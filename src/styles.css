@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+@import 'tailwindcss';
+
+
+@theme {
+  --color-bg: #111111;
+  --color-bg-transparent: rgb(17 17 17 / 0.83);
+  --color-bg-pasiv: #0d0d0d;
+  --color-default-yellow: #fffb00;
+}

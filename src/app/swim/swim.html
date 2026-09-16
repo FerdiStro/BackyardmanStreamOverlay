@@ -1,0 +1,52 @@
+<div class="fixed inset-0 h-screen w-screen z-50 bg-bg-pasiv flex items-center justify-center p-4 select-none font-bold overflow-hidden">
+
+    <div class="absolute top-6 left-6 z-20 bg-[#141414] border-l-4 border-l-default-yellow border-y border-r border-white/10 px-6 py-3.5 shadow-2xl flex items-center gap-4">
+        <span class="inline-block w-4 h-4 bg-cyan-400 rounded-full animate-ping"></span>
+        <div>
+            <div class="text-xl font-black tracking-widest text-white uppercase">SCHWIMMBECKEN</div>
+            <div class="text-xs font-mono text-gray-400">500 m FESTE BAHN · KREISVERKEHR</div>
+        </div>
+    </div>
+
+    <div class="relative w-full max-w-[96vw] h-[92vh] flex items-center justify-center [perspective:1800px] drop-shadow-[0_0_1px_rgba(255,215,0,0.3)]">
+
+        <div class="relative w-full h-[85vh] bg-[#1e293b] border-[16px] border-[#334155] shadow-[0_60px_120px_rgba(0,0,0,0.95)] [transform-style:preserve-3d] [transform:rotateX(20deg)_rotateZ(-4deg)] flex flex-col justify-between p-4 transition-all duration-700">
+
+            <div class="relative w-full h-full bg-gradient-to-r from-cyan-600 via-sky-600 to-blue-800 border-4 border-cyan-300/40 shadow-inner flex flex-col justify-between overflow-hidden">
+
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,_rgba(255,255,255,0.3),_transparent_70%)] pointer-events-none"></div>
+
+                @for (lane of lanes(); track lane.laneNumber) {
+                    <div class="relative flex-1 flex items-center border-b-2 border-dashed border-red-500/80 last:border-none px-4 bg-blue-950/20">
+
+                        <div class="bg-bg border-r-4 border-r-default-yellow px-5 py-2.5 text-default-yellow font-mono text-3xl font-black shadow-2xl [transform:rotateZ(4deg)_rotateX(-20deg)] shrink-0 z-10 border border-white/10">
+                            BAHN {{ lane.laneNumber }}
+                        </div>
+
+                        <div class="flex-1 flex items-center gap-4 overflow-x-auto px-6 z-10">
+                            @for (nr of lane.startNumbers; track nr) {
+                                <div class=" px-4 py-1.5 shadow-xl shrink-0 flex items-center gap-1 font-mono text-4xl font-black tracking-wider">
+                                    <span class="text-default-yellow">#</span>
+                                    <span class="text-white">{{ nr }}</span>
+                                </div>
+                            } @empty {
+                                <span class="text-white/50 font-mono text-base uppercase tracking-widest [transform:rotateZ(4deg)_rotateX(-20deg)]">
+                                    Frei
+                                </span>
+                            }
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="absolute bottom-6 right-6 z-20 bg-[#141414] border-r-4 border-r-default-yellow border-y border-l border-white/10 px-5 py-2.5 text-xs font-mono text-gray-400">
+        STILL STANDING <span class="text-default-yellow">LIVE POOL MAP</span>
+    </div>
+
+</div>

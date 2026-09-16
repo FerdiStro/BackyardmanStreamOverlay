@@ -1,0 +1,61 @@
+<div class="fixed bottom-10 left-10 z-50 flex flex-col w-[520px] text-white select-none font-bold">
+
+    <!-- Hauptkarte: Ecken scharf, Akzentstreifen links -->
+    <div class="bg-[#141414]/95 border-l-4 border-l-default-yellow border-y border-r border-white/10 p-6 shadow-2xl backdrop-blur-md">
+
+        @if (selectedAthlete(); as athlete) {
+            <!-- Athleten Header -->
+            <div class="flex items-center justify-between border-b border-white/10 pb-5 mb-5">
+                <div class="flex items-center gap-4">
+                    @if (athlete.flagUrl) {
+                        <div class="w-12 h-8 flex items-center justify-center overflow-hidden border border-white/20 shadow-md bg-black/40">
+                            <img [src]="athlete.flagUrl" alt="Flag" class="w-full h-full object-cover"/>
+                        </div>
+                    }
+                    <div>
+                        <div class="text-3xl font-black tracking-tight uppercase">{{ athlete.name }}</div>
+                        <div class="text-xs text-default-yellow uppercase tracking-widest font-bold">Interview Partner
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center justify-center bg-black/60 px-4 py-2 border border-white/10 shadow-inner">
+                    <span class="text-2xl font-mono font-extrabold text-default-yellow">#{{ athlete.startNr }}</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3">
+
+                <div class="flex flex-col justify-center items-center bg-black/40 border border-white/10 p-3">
+                    <span class="text-[11px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Rang</span>
+                    <span class="text-2xl font-black text-white">
+                        {{ athlete.rank }}
+                    </span>
+                </div>
+
+                <div class="flex flex-col justify-center items-center bg-black/40 border border-white/10 p-3">
+                    <span class="text-[11px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Loop</span>
+                    <span class="text-2xl font-black text-white">
+                        {{ athlete.startNr || '-' }}
+                    </span>
+                </div>
+
+                <div class="flex flex-col justify-center items-center bg-black/40 border border-white/10 p-3">
+                    <span class="text-[11px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Gesamtzeit</span>
+                    <span class="text-xl font-extrabold text-default-yellow font-mono">
+                        {{ athlete.totalTime || '00:00:00' }}
+                    </span>
+                </div>
+
+            </div>
+        } @else {
+            <!-- Ladezustand / Ausweichanzeige -->
+            <div class="flex items-center justify-between py-2">
+                <span class="text-lg text-gray-400 font-semibold">Warte auf Athleten-Daten...</span>
+                <span class="text-sm font-mono text-default-yellow animate-pulse">#{{ startNr() || startNr() }}</span>
+            </div>
+        }
+
+    </div>
+
+</div>

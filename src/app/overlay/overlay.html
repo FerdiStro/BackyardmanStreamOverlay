@@ -1,0 +1,79 @@
+<div class="fixed top-4 left-4 right-4 text-white text-3xl font-bold select-none z-50">
+
+    <div class="grid grid-cols-8  items-stretch">
+
+        <div class="flex flex-col justify-center items-center bg-[#141414] border border-white/10 p-4 shadow-2xl">
+            <span class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Athleten</span>
+            <div class="text-4xl font-extrabold text-white">
+                {{ athletes().length }} <span class="text-xl text-gray-500">/ {{ startNumber }}</span>
+            </div>
+        </div>
+
+        <div></div>
+
+        <div class="col-span-4 flex items-center justify-evenly bg-[#141414] border-l-4 border-l-default-yellow border-y border-r border-white/10 p-4 shadow-2xl">
+
+            <img
+                    src="Logos/logo_1.png"
+                    alt="Logo"
+                    class="w-32 mr-5 overflow-hidden scale-320 h-auto drop-shadow-[0_0_15px_rgba(255,215,0,0.6)]">
+
+
+
+            <div class="flex items-center gap-3">
+                <div class="h-10 w-10 flex items-center justify-center">
+                    <img src="icons/rad.png" alt="Rad fahren" class="h-full w-auto object-contain">
+                </div>
+                <div class="text-2xl font-extrabold text-white">
+                    {{ loopCount() * 20 }} km
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <div class="h-10 w-10 flex items-center justify-center">
+                    <img src="icons/lauf.png" alt="Laufen" class="h-full w-auto object-contain">
+                </div>
+                <div class="text-2xl font-extrabold text-white">
+                    {{ loopCount() * 5 }} km
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <div class="h-10 w-10 flex items-center justify-center">
+                    <img src="icons/welle.png" alt="Schwimmen" class="h-full w-auto object-contain">
+                </div>
+                <div class="text-2xl font-extrabold text-white">
+                    {{ loopCount() * 500 }} m
+                </div>
+            </div>
+
+            <div class="text-3xl  ml-5 font-extrabold text-default-yellow font-mono">
+
+                <span class="text-2xl text-white">
+                    In:
+                </span>
+                {{ elapsedTime() }}
+
+            </div>
+
+
+
+        </div>
+
+        <div></div>
+
+        <div class="flex flex-col justify-center items-center bg-[#141414] border border-white/10 p-4 shadow-2xl">
+            <div>
+                 <span class=" font-semibold uppercase tracking-widest text-3xl inline">
+                Loop
+            </span>
+
+                <span class="text-default-yellow inline-block">
+                {{ raceData()?.['Loop gestartet'] || '1' }}
+            </span>
+            </div>
+        </div>
+
+    </div>
+
+</div>

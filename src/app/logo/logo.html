@@ -1,0 +1,30 @@
+<div class="fixed right-14 bottom-5">
+    <div
+            [class.opacity-100]="isVisible()"
+            [class.opacity-0]="!isVisible()"
+            [class.pointer-events-none]="!isVisible()"
+            class="transition-all duration-1000 ease-in-out">
+
+        @switch (currentIndex()) {
+<!--            @case (0) {-->
+<!--                <img-->
+<!--                        [src]="logos[0]"-->
+<!--                        alt="Logo 1"-->
+<!--                        class="w-72  scale-200 h-auto drop-shadow-[0_0_15px_rgba(255,215,0,0.6)]">-->
+<!--            }-->
+            @case (1) {
+                    <img
+                            [src]="logos[0]"
+                            alt="Sponsor Logo"
+                            class="w-36 h-auto">
+            }
+            @default {
+                <img
+                        [src]="logos[currentIndex()]"
+                        alt="Sponsor Logo"
+                        class="w-56 h-auto">
+            }
+        }
+
+    </div>
+</div>
