@@ -6,6 +6,7 @@
             <span class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Athleten</span>
             <div class="text-4xl font-extrabold text-white">
                 {{ athletes().length }} <span class="text-xl text-gray-500">/ {{ startNumber }}</span>
+<!--                {{ current }} <span class="text-xl text-gray-500">/ {{ startNumber }}</span>-->
             </div>
         </div>
 
@@ -19,7 +20,14 @@
                     class="w-32 mr-5 overflow-hidden scale-320 h-auto drop-shadow-[0_0_15px_rgba(255,215,0,0.6)]">
 
 
-
+            <div class="flex items-center gap-3">
+                <div class="h-10 w-10 flex items-center justify-center">
+                    <img src="icons/welle.png" alt="Schwimmen" class="h-full w-auto object-contain">
+                </div>
+                <div class="text-2xl font-extrabold text-white">
+                    {{ loopCount() * 0.5 }} km
+                </div>
+            </div>
             <div class="flex items-center gap-3">
                 <div class="h-10 w-10 flex items-center justify-center">
                     <img src="icons/rad.png" alt="Rad fahren" class="h-full w-auto object-contain">
@@ -38,14 +46,7 @@
                 </div>
             </div>
 
-            <div class="flex items-center gap-3">
-                <div class="h-10 w-10 flex items-center justify-center">
-                    <img src="icons/welle.png" alt="Schwimmen" class="h-full w-auto object-contain">
-                </div>
-                <div class="text-2xl font-extrabold text-white">
-                    {{ loopCount() * 500 }} m
-                </div>
-            </div>
+
 
             <div class="text-3xl  ml-5 font-extrabold text-default-yellow font-mono">
 
@@ -53,6 +54,15 @@
                     In:
                 </span>
                 {{ elapsedTime() }}
+
+            </div>
+
+            <div class="text-3xl  ml-5 font-extrabold text-default-yellow font-mono">
+
+                <span class="text-2xl text-white">
+                    Total:
+                </span>
+                {{ overallTimer() }}
 
             </div>
 

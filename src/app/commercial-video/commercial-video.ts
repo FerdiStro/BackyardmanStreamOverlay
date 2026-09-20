@@ -16,6 +16,8 @@ export class CommercialVideo implements AfterViewInit {
   public commercialVideos: string[] = [
     'commercialVideos/Rocktherace.mp4',
     'commercialVideos/Traithlon.mp4',
+    'commercialVideos/vid1.mp4',
+    'commercialVideos/vid2.mp4',
   ];
 
   public animateIn = signal<boolean>(false);

@@ -1,0 +1,18 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background-color: #000; /* Schwarzer Hintergrund */
+    color: #fff;
+    padding: 1rem;
+}
+
+.results-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Optional: RaceResult Styles an dein Dark Theme anpassen */
+.RRPublish {
+    color: #fff !important;
+}

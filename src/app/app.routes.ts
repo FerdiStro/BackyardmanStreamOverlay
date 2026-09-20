@@ -12,6 +12,9 @@ import {Interview} from "./interview/interview";
 import {VideoPlayback} from "./video-playback/video-playback";
 import {CommercialVideo} from "./commercial-video/commercial-video";
 import {Swim} from "./swim/swim.component";
+import {StartSoon} from "./start-soon/start-soon";
+import {Bestlist} from "./bestlist/bestlist";
+import {BackyardBanner} from "./backyard-banner/backyard-banner";
 
 export const routes: Routes = [{
     path: 'overlay', component: Overlay,
@@ -49,5 +52,15 @@ export const routes: Routes = [{
     {
         path: 'swim', component: Swim
     },
+    {
+        path: 'startSoon', component: StartSoon
+    },
+    {
+        path: 'bestList', component: Bestlist
+    },
+    {
+        path: 'backyardBanner', component: BackyardBanner
+    },
+
 
 ];

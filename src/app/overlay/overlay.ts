@@ -10,15 +10,27 @@ import {environment} from "../../environments/environment";
 })
 export class Overlay {
     public startNumber: number = environment.startNumber;
+    public current: number = environment.current;
 
 
     public elapsedTime = signal<string>('00:00:00');
+    public overallTimer = signal<string>('00:00:00');
+
     public raceData = signal<RaceResultData | null>(null);
     public athletes = signal<Athlete[]>([]);
-    public loopCount = computed(() => {
-        const raw = this.raceData()?.['Loop gestartet'];
-        return raw ? parseInt(raw, 10) || 0 : 0;
-    });
+
+
+    // public loopCount = computed(() => {
+    //     const raw = this.raceData()?.['Loop gestartet'];
+    //     return raw ? parseInt(raw, 10) || 0 : 0;
+    // });
+
+    private overallStartTimestamp: number = new Date('2026-09-18T12:00:00').getTime();
+
+    public  loopCount(){
+        return environment.loopCount;
+    }
+
     private startTimestamp: number = 0;
     private readonly apiRaceDataUri = environment.apiRaceDataUri;
     private readonly apiUrl = environment.apiUrl;
@@ -39,15 +51,23 @@ export class Overlay {
         });
 
         //race data request
-        timer(0, 3000)
-            .pipe(switchMap(() => this.http.get<RaceResultData[]>(this.apiRaceDataUri)), takeUntilDestroyed())
-            .subscribe({
-                next: (data) => {
-                    if (data && data.length > 0) {
-                        this.raceData.set(data[0]);
-                    }
-                }, error: (err) => console.error('Fehler beim Abrufen der RaceResult API:', err)
-            });
+        // timer(0, 3000)
+        //     .pipe(switchMap(() => this.http.get<RaceResultData[]>(this.apiRaceDataUri)), takeUntilDestroyed())
+        //     .subscribe({
+        //         next: (data) => {
+        //             if (data && data.length > 0) {
+        //                 this.raceData.set(data[0]);
+        //             }
+        //         }, error: (err) => console.error('Fehler beim Abrufen der RaceResult API:', err)
+        //     });
+
+        this.raceData.set({
+            Platzierung: "",
+            LoopStarted_time: "" +  environment.startTime,
+            "Loop gestartet":  "" + environment.loopCount
+
+
+        })
 
         timer(0, 3000)
             .pipe(takeUntilDestroyed(),
@@ -79,6 +99,12 @@ export class Overlay {
     }
 
     private updateTimer(): void {
+        const now = Date.now();
+        if (this.overallStartTimestamp) {
+            const diffOverallSeconds = Math.max(0, Math.floor((now - this.overallStartTimestamp) / 1000));
+            this.overallTimer.set(this.formatSeconds(diffOverallSeconds));
+        }
+
         if (!this.startTimestamp) return;
 
         const diffSeconds = Math.max(0, Math.floor((Date.now() - this.startTimestamp) / 1000));
@@ -92,8 +118,22 @@ export class Overlay {
         const formattedS = String(s).padStart(2, '0');
 
         this.elapsedTime.set(`${formattedH}:${formattedM}:${formattedS}`);
+
     }
 
+
+
+    private formatSeconds(totalSeconds: number): string {
+        const h = Math.floor(totalSeconds / 3600);
+        const m = Math.floor((totalSeconds % 3600) / 60);
+        const s = totalSeconds % 60;
+
+        const formattedH = String(h).padStart(2, '0');
+        const formattedM = String(m).padStart(2, '0');
+        const formattedS = String(s).padStart(2, '0');
+
+        return `${formattedH}:${formattedM}:${formattedS}`;
+    }
 
 }
 
